@@ -1,4 +1,6 @@
 Zamunda = do  -> 
+	regex_tag = /<(\w+)\/?>/,
+	regex_white = /\s/
 	Zamunda = (selector, attributes) ->
 		return new $$.fn.init(selector, attributes)
 
@@ -6,7 +8,6 @@ Zamunda = do  ->
 		constructor: Zamunda,
 		init: (selector, attributes) ->
 			core_slice = [].slice
-			regex_tag = /<(\w+)\/?>/
 
 			matches = selector.match(regex_tag)
 			if matches
@@ -25,12 +26,25 @@ Zamunda = do  ->
 			this[0] = elements
 			this
 		,
+		addClass: (value) ->	
+			elements = this[0]	
+			elements.forEach (element, index) ->
+				classes = element.className.split ' '
+				if classes.indexOf(value) != -1
+					classes.push value
+					element.className = classes.join ' '
+				else 
+					break
 
-		addClass: () ->		
+				elements
+		,
+		removeClass: (value) ->
+			element = this[0]
+			if value.match regex_white
+				classes = value.split ' '
+				
+
 	}
 
 	Zamunda.fn.init.prototype = Zamunda.fn
 	window.Zamunda = window.$$ = Zamunda
-		#_slice.call
-
-

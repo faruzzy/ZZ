@@ -65,10 +65,11 @@
 					classes = value.split(/\s/);
 					var newClasses = value.split(/\s/);
 
-					for (var i in newClasses)
+					for (var i in newClasses) {
 						classes.push(newClasses[i]);
-
-						cur[i].className = classes.join(' ');
+					}
+					
+					cur[i].className = classes.join(' ');
 				}
 			}
 		}, 
